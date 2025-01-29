@@ -36,6 +36,6 @@ class CheckInvoiceView(APIView):
         try:
             uniq_id = request.data.get("uniq_id")
             invoice = Invoice.objects.get(uniq_id=uniq_id)
-            return Response({"status": invoice.is_complete}, status=status.HTTP_200_OK)
+            return Response({"status": invoice.is_complete, "amount": invoice.amount}, status=status.HTTP_200_OK)
         except Exception as e:
             print(e)
