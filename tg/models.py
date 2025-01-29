@@ -29,11 +29,11 @@ class Invoice(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.uniq_id:
-            self.uniq_id = self.generate_referral_code()
+            self.uniq_id = self.generate_unique_code()
         super().save(*args, **kwargs)
 
-    def generate_referral_code(self):
-        return str(uuid.uuid4().hex[:10]).upper()
+    def generate_unique_code(self):
+        return ''.join(filter(str.isdigit, str(uuid.uuid4().int)))[:5]
 
 
 class Course(models.Model):
