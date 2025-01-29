@@ -8,7 +8,7 @@ class GetActiveReqView(APIView):
         amount = request.data.get("amount")
         try:
             active_req = Req.objects.filter(is_active=True).order_by("?").first()
-            invoice = Invoice.objects.create(amount=amount, changer=active_req.user)
+            invoice = Invoice.objects.create(amount=amount, changer=active_req.user, req=active_req)
             invoice.save()
             if not active_req:
                 return Response({"error": "No active req found"}, status=status.HTTP_404_NOT_FOUND)
