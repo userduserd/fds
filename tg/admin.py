@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Req, TelegramUser, Course
+from .models import Req, TelegramUser, Course, Invoice
 # Register your models here.
 
 
@@ -15,4 +15,9 @@ class TelegramUserAdmin(admin.ModelAdmin):
 
 @admin.register(Course)
 class CourseUserAdmin(admin.ModelAdmin):
+    list_display = ['id']
+
+
+@admin.register(Invoice)
+class InvoiceUserAdmin(admin.ModelAdmin):
     list_display = ['id']
