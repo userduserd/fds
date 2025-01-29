@@ -34,3 +34,7 @@ class Invoice(models.Model):
 
     def generate_referral_code(self):
         return str(uuid.uuid4().hex[:10]).upper()
+
+
+class Course(models.Model):
+    kzt_course = models.FloatField()
