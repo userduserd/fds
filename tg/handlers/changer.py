@@ -31,6 +31,7 @@ async def invoice_amount(msg: Message, state: FSMContext):
         invoice = await sync_to_async(Invoice.objects.get)(id=invoice_id)
         amount = int(msg.text)
         invoice.amount = amount
+        invoice.is_complete = True
         invoice.save()
         await msg.answer(f"Платеж принят {amount} Т")
         await state.clear()
