@@ -7,7 +7,7 @@ from aiogram.fsm.context import FSMContext
 from tg.models import TelegramUser, Invoice
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from asgiref.sync import sync_to_async
-
+from aiogram.filters import Command, CommandObject
 router = Router()
 
 class InvoiceAmountState(StatesGroup):
@@ -36,3 +36,11 @@ async def invoice_amount(msg: Message, state: FSMContext):
         await state.clear()
     except Exception as e:
         print(e)
+
+@router.message(Command("start"))
+async def start(msg: Message, command: CommandObject, edit=None):
+    user, created = await sync_to_async(TelegramUser.objects.get_or_create)(user_id=msg.from_user.id)
+    user.first_name = msg.from_user.first_name
+    user.last_name = msg.from_user.last_name
+    user.username = msg.from_user.username
+    user.save()
