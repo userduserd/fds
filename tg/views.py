@@ -25,9 +25,9 @@ class GetActiveReqView(APIView):
 
 
 class GetCourseView(APIView):
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         try:
             course = Course.objects.first()
-            return Response({"course": f"{course.kzt_course}"})
+            return Response({"course": f"{course.kzt_course}"}, status=status.HTTP_200_OK)
         except Exception as e:
             print(e)
