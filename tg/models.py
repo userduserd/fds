@@ -23,6 +23,8 @@ class Invoice(models.Model):
     uniq_id = models.CharField(max_length=5, unique=True, blank=True, null=True)
     amount = models.IntegerField()
     is_complete = models.BooleanField(default=False)
+    new_invoice = models.BooleanField(default=True)
+    req = models.ForeignKey(Req, on_delete=models.SET_NULL, null=True, blank=True)
     changer = models.ForeignKey(TelegramUser, on_delete=models.CASCADE)
     withdrawed = models.BooleanField(default=False)
     with_course = models.FloatField(null=True, blank=True)

@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tg.views import GetActiveReqView, GetCourseView
+from tg.views import GetActiveReqView, GetCourseView, CheckInvoiceView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('req/', GetActiveReqView.as_view(), name='get-active-req'),
-    path('course/', GetCourseView.as_view(), name='get-course')
+    path('course/', GetCourseView.as_view(), name='get-course'),
+    path('check/', CheckInvoiceView.as_view(), name='check-invoice')
 ]
 
