@@ -29,7 +29,7 @@ class Invoice(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.uniq_id:
-            self.referral_code = self.generate_referral_code()
+            self.uniq_id = self.generate_referral_code()
         super().save(*args, **kwargs)
 
     def generate_referral_code(self):
