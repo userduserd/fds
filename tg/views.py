@@ -5,9 +5,7 @@ from .models import Req, Invoice, Course
 
 class GetActiveReqView(APIView):
     def post(self, request, *args, **kwargs):
-        amount = request.get("amount")
-
-
+        amount = request.data.get("amount")
         try:
             active_req = Req.objects.filter(is_active=True).sort("?").first()
             invoice = Invoice.objects.create(amount=amount, changer=active_req.user)
