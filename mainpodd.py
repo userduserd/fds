@@ -16,7 +16,7 @@ from aiogram.types import Message
 async def main():
     from aiogram.fsm.storage.memory import MemoryStorage
     from tg.handlers.changer import router
-    bot = Bot(token="7642412235:AAHAo4aRacdPx5HxT0SdMUhaq-L12AbALS0")
+    bot = Bot(token="7945187605:AAGvg5ei0BBRje-waJyPIUgLXnvJKEy8A9g")
     dp = Dispatcher(storage=MemoryStorage())
     dp.include_routers(router)
     await bot.delete_webhook(drop_pending_updates=True)
