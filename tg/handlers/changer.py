@@ -9,7 +9,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from asgiref.sync import sync_to_async
 from aiogram.filters import Command, CommandObject
 
-from fds.tg.text import admin_text
+from tg.text import admin_text
 
 router = Router()
 
