@@ -5,8 +5,9 @@ from .models import Req, Invoice, Course
 
 class GetActiveReqView(APIView):
     def post(self, request, *args, **kwargs):
+        print("REQUEST DATA", request.data)
         amount = request.data.get("amount")
-        
+
         try:
             bot = request.data.get("bot")
             active_req = Req.objects.filter(is_active=True).order_by("?").first()
