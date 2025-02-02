@@ -11,6 +11,7 @@ class TelegramUser(models.Model):
     is_admin = models.BooleanField(default=False)
     is_exchanger = models.BooleanField(default=False)
 
+
 class Req(models.Model):
     user = models.ForeignKey(TelegramUser, on_delete=models.CASCADE)
     bank = models.CharField(max_length=255)
@@ -21,6 +22,7 @@ class Req(models.Model):
 
 class Invoice(models.Model):
     uniq_id = models.CharField(max_length=5, unique=True, blank=True, null=True)
+    bot_user = models.CharField(max_length=255, null=True, blank=True)
     amount = models.IntegerField()
     is_complete = models.BooleanField(default=False)
     new_invoice = models.BooleanField(default=True)
