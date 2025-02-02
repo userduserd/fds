@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Req, Invoice, Course
 
+
 class GetActiveReqView(APIView):
     def post(self, request, *args, **kwargs):
         print("REQUEST DATA", request.data)
