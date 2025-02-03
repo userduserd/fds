@@ -172,7 +172,7 @@ async def manage_req(call: CallbackQuery):
     req = await sync_to_async(Req.objects.get)(id=data[2])
     if req.is_active:
         req.is_active = False
-    if not req.is_active:
+    elif not req.is_active:
         req.is_active = True
     req.save()
     user = await sync_to_async(TelegramUser.objects.get)(user_id=call.from_user.id)
