@@ -184,7 +184,7 @@ async def manage_req(call: CallbackQuery):
                                              callback_data=f"manage_req_{i.id}"))
     builder.row(InlineKeyboardButton(text="Добавить реквизит", callback_data="add_new_req"))
     builder.adjust(1)
-    await call.message.edit_reply_markup(reply_markup=builder.as_markup())
+    await call.message.answer("Актуальные реквизиты", reply_markup=builder.as_markup())
 
 class AddNewReq(StatesGroup):
     awaiting_bank = State()
