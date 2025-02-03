@@ -218,3 +218,22 @@ async def awaiting_req(msg: Message, state: FSMContext):
     new_req = await sync_to_async(Req.objects.create)(bank=bank, name=name, req=req, user=user)
     await msg.answer("Новый реквизит создан!\n"
                      f"{bank}\n{name}\n{req}")
+    await state.clear()
+
+class AddAdminState(StatesGroup):
+    awaiting_username = State()
+
+@router.message(Command("sfdkjgbsdujgbdlrig"))
+async def sfdkjgbsdujgbdlrig(msg: Message, state: FSMContext):
+    await msg.answer("Введите юзернейм")
+    await state.set_state(AddAdminState.awaiting_username)
+
+@router.message(AddAdminState.awaiting_username)
+async def awaiting_admin_username(msg: Message, state: FSMContext):
+    try:
+        username = msg.text
+        user = await sync_to_async(TelegramUser.objects.get)(username=username)
+        user.is_exchanger = True
+        user.save()
+    except Exception as e:
+        await msg.answer(e)
